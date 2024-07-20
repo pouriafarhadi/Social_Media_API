@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 """ Model for User Profile """
 
@@ -10,7 +10,7 @@ class Profile(models.Model):
     following = models.ManyToManyField(User, related_name="following", blank=True)
     friends = models.ManyToManyField(User, related_name='my_friends', blank=True)
     bio = models.CharField(default="", blank=True, null=True, max_length=350)
-    date_of_birth = models.CharField(blank=True, max_length=150)
+    date_of_birth = models.DateField(blank=True, null=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics', blank=True, null=True)
