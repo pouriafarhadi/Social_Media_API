@@ -8,12 +8,14 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_online = models.BooleanField(default=False)
     following = models.ManyToManyField(User, related_name="following", blank=True)
-    friends = models.ManyToManyField(User, related_name='my_friends', blank=True)
+    friends = models.ManyToManyField(User, related_name="my_friends", blank=True)
     bio = models.CharField(default="", blank=True, null=True, max_length=350)
     date_of_birth = models.DateField(blank=True, null=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics', blank=True, null=True)
+    image = models.ImageField(
+        default="default.jpg", upload_to="profile_pics", blank=True, null=True
+    )
 
     def profile_posts(self):
         return self.user.post_set.all()
@@ -25,18 +27,19 @@ class Profile(models.Model):
         return self.friends.all().count()
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return f"{self.user.username} Profile"
 
 
-STATUS_CHOICES = (
-    ('send', 'send'),
-    ('accepted', 'accepted')
-)
+STATUS_CHOICES = (("send", "send"), ("accepted", "accepted"))
 
 
 class Relationship(models.Model):
-    sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='friend_sender')
-    receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='friend_receiver')
+    sender = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name="friend_sender"
+    )
+    receiver = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name="friend_receiver"
+    )
     status = models.CharField(max_length=8, choices=STATUS_CHOICES)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
