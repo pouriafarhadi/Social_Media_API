@@ -143,11 +143,11 @@ REST_FRAMEWORK = {
 DJOSER = {
     "SERIALIZERS": {
         "user_create": "Dj_Drf_Social_Media_App.serializers.UserCreateSerializer",
+        "current_user": "Dj_Drf_Social_Media_App.serializers.CurrentUserSerializer",
     }
 }
 
 SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("JWT",),
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
