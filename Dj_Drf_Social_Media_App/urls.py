@@ -26,6 +26,7 @@ urlpatterns = [
     path("auth/", include("djoser.urls.jwt")),
     path("users/", include("users.urls")),
     path("blog/", include("blog.urls")),
+    path("network/", include("friend.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
