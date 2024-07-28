@@ -78,18 +78,20 @@ class FriendRequestViewSet(viewsets.ModelViewSet):
             return Response(
                 "provide receiver_user_id in body", status=status.HTTP_400_BAD_REQUEST
             )
-        if FriendRequest.objects.filter(
-            sender_id=sender_id, receiver_id=receiver_id, is_active=True
-        ).exists():
+        obj = FriendRequest.objects.filter(sender_id=sender_id, receiver_id=receiver_id)
+        if obj.filter(is_active=True).exists():
             return Response(
                 {"status": "Friend request already sent"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+        elif obj.filter(is_active=False).exists():
+            obj.delete()
         if (
             self.request.user
             in FriendList.objects.get(user_id=receiver_id).friends.all()
         ):
             return Response("already friends", status=status.HTTP_400_BAD_REQUEST)
+
         FriendRequest.objects.create(sender_id=sender_id, receiver_id=receiver_id)
         return Response(
             {"status": "Friend request sent"}, status=status.HTTP_201_CREATED

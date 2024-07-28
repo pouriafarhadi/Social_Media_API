@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     is_online = models.BooleanField(default=False)
     following = models.ManyToManyField(User, related_name="following", blank=True)
     friends = models.ManyToManyField(User, related_name="my_friends", blank=True)

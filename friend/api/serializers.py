@@ -20,11 +20,3 @@ class FriendRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = FriendRequest
         fields = ["id", "sender", "receiver", "is_active", "timestamp"]
-
-
-# class FriendListSerializer(serializers.ModelSerializer):
-#     friends = UserSerializer(many=True, read_only=True)
-#
-#     class Meta:
-#         model = FriendList
-#         fields = ["friends"]
