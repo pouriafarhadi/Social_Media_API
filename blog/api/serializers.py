@@ -77,9 +77,11 @@ class CommentSerializer(serializers.ModelSerializer):
         ]
 
     def get_total_clikes(self, obj):
+        """get the total number of comment likes"""
         return obj.total_clikes()
 
     def get_replies(self, obj):
+        """get the replies for the obj comment"""
         replies = obj.replies.all()
         return CommentSerializer(replies, many=True, context=self.context).data
 

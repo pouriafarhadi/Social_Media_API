@@ -13,6 +13,12 @@ class UserSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer()
+    followers = serializers.SerializerMethodField(read_only=True)
+
+    def get_followers(self, obj):
+        followers = User.objects.filter(profile__following=obj.user)
+        serializer = UserSerializer(followers, many=True)
+        return serializer.data
 
     class Meta:
         model = Profile
@@ -20,8 +26,13 @@ class ProfileSerializer(serializers.ModelSerializer):
             "id",
             "user",
             "following",
+            "followers",
             "friends",
             "bio",
             "date_of_birth",
             "image",
         )
+
+
+class FollowSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField()
