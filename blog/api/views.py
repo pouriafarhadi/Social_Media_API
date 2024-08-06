@@ -19,17 +19,23 @@ class PostViewSet(ModelViewSet):
 
     @action(detail=True, methods=SAFE_METHODS, permission_classes=[IsAuthenticated])
     def info(self, request, pk=None):
+        """showing specific single post detail for ones who are not the author"""
+
         data = self.serializer_class(self.get_object()).data
         return Response(data)
 
     @action(detail=False, methods=SAFE_METHODS)
     def mine(self, request):
+        """the author posts"""
+
         self.queryset = Post.objects.filter(author=request.user)
         serializer = self.serializer_class(self.queryset, many=True)
         return Response(serializer.data)
 
     @action(detail=True, methods=["post"], permission_classes=[IsAuthenticated])
-    def like(self, request, pk=None):  # to perform like and unlike functionality
+    def like(self, request, pk=None):
+        """to perform like and unlike functionality"""
+
         post = self.get_object()
         user = request.user
         if post.likes.filter(id=user.id).exists():
@@ -40,6 +46,8 @@ class PostViewSet(ModelViewSet):
 
     @action(detail=True, methods=["post"], permission_classes=[IsAuthenticated])
     def save(self, request, pk=None):
+        """add the post to the saved list action for saving and unsave a post"""
+
         post = self.get_object()
         user = request.user
         if post.saves.filter(id=user.id).exists():
