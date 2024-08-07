@@ -3,19 +3,20 @@
 <p align="center">
 
 </p>
-
+ 
 # Guideline
-
 - [Guideline](#guideline)
 - [Goal](#goal)
 - [API endpoints](#endpoints)
 - [Database Schema](#database-schema)
+- [Curriculum](#curriculum)
+- [License](#license)
 - [Bugs](#bugs)
+
 
 # Goal
 
-This is a sample project to show how to create a social network, and how users can CRUD posts and comments as well as
-following and requesting others to be their friends. Have plans to enhance my knowledge in Django channels in future.
+This is a sample project to show how to create a social network, and how users can CRUD posts and comments as well as following and requesting others to be their friends. Have plans to enhance my knowledge in Django channels in future.
 
 # Endpoints
 
@@ -44,6 +45,10 @@ I used djoser for authentication and other app endpoints:
 **Note:** All endpoints require the user to be authenticated. Replace `<user_id>`, `<post_id>`, `<comment_id>`,
 and `<search_query>` with the appropriate values when making requests.
 
+
+
+
+
 # Database Schema
 
 the provided schema is the main database design of the project based on the models we have used in django project.
@@ -52,6 +57,7 @@ the provided schema is the main database design of the project based on the mode
 <img src="./docs/db-diagram.png" width="100%">
 </p>
 
-# Bugs
 
+
+# Bugs
 Feel free to let me know if something needs to be fixed. or even any features seems to be needed in this repo.
