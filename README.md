@@ -49,7 +49,7 @@ and `<search_query>` with the appropriate values when making requests.
 the provided schema is the main database design of the project based on the models we have used in django project.
 
 <p align="center">
-<img src="./docs/db-diagram.png" width="100%">
+<img src="./docs/db.png" width="100%">
 </p>
 
 # Bugs
