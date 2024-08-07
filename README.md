@@ -19,7 +19,8 @@ following and requesting others to be their friends. Have plans to enhance my kn
 
 # Endpoints
 
-I used djoser for authentication and other app endpoints:
+I used djoser for authentication and other app endpoints.
+some of them are:
 # BLOG API Endpoints
 
 | Name                             | Description                                                        | URL                                                   | Method    | Params              |
